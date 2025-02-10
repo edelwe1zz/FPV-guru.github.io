@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FPV-Гуру</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 18px; /* Увеличили основной размер шрифта */
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 40px; /* Увеличили отступы */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3em; /* Увеличили размер заголовка */
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            margin-top: 20px;
+        }
+
+        .tab-button {
+            background-color: #555;
+            color: white;
+            padding: 20px 30px; /* Увеличили padding */
+            border: none;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            font-size: 1.2em; /* Увеличили размер шрифта кнопок */
+        }
+
+        .tab-button:hover {
+            background-color: #666;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            font-size: 1.1em; /* Увеличили размер шрифта в контенте */
+            line-height: 1.6;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #007BFF;
+        }
+
+        .faq-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.2em; /* Увеличили размер шрифта */
+            cursor: pointer;
+        }
+
+        .faq-button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 30px;
+            margin-top: 20px;
+            font-size: 1.2em; /* Увеличили размер шрифта в футере */
+        }
+
+        /* Форма обратной связи */
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1.1em; /* Увеличили размер шрифта */
+        }
+
+        .contact-form button {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em; /* Увеличили размер шрифта */
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Темная/светлая тема */
+        .dark-theme {
+            background-color: #333;
+            color: white;
+        }
+
+        .light-theme {
+            background-color: #f5f5f5;
+            color: black;
+        }
+
+        /* Галерея */
+        .gallery img {
+            width: 100%;
+            height: auto;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        /* Опрос */
+        .poll {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .poll button {
+            background-color: #28a745;
+            color: white;
+            padding: 20px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em; /* Увеличили размер шрифта */
+            cursor: pointer;
+        }
+
+        .poll button:hover {
+            background-color: #218838;
+        }
+
+        /* Стилевая адаптация для полноэкранной рабочей зоны */
+        .container {
+            max-width: 100%; /* Растягиваем на всю ширину экрана */
+            width: 100%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>FPV-Гуру</h1>
+    <p>Все о FPV-дронах: советы, обзоры, чаты и новости</p>
+    <button onclick="toggleTheme()">Переключить тему</button>
+</header>
+
+<div class="tabs">
+    <button class="tab-button" onclick="openTab('about')">О нас</button>
+    <button class="tab-button" onclick="openTab('faq')">Часто задаваемые вопросы</button>
+    <button class="tab-button" onclick="openTab('reviews')">Отзывы</button>
+    <button class="tab-button" onclick="openTab('gallery')">Галерея</button>
+    <button class="tab-button" onclick="openTab('contact')">Контакты</button>
+    <button class="tab-button" onclick="openTab('poll')">Опрос</button>
+</div>
+
+<div class="container">
+
+    <div id="about" class="tab-content active">
+        <h2>Что такое FPV-дроны?</h2>
+        <p>FPV (First Person View) дроны — это беспилотные летательные аппараты, оборудованные камерами, которые передают видеоизображение с дрона в реальном времени на экран пилота. Пилот управляет дроном, как будто он сидит внутри него, что создает эффект "первого лица". Это уникальное и увлекательное занятие, которое привлекает любителей технологий и экстремальных видов спорта.</p>
+        <p>На этом сайте вы найдете все, что нужно знать о FPV-дронах — от основ до продвинутых техник полета, а также обзоры и советы по выбору лучшего оборудования для начинающих и профессионалов.</p>
+        <button class="faq-button" onclick="openTab('faq')">Посмотреть часто задаваемые вопросы</button>
+    </div>
+
+    <!-- Часто задаваемые вопросы -->
+    <div id="faq" class="tab-content">
+        <h2>Часто задаваемые вопросы</h2>
+        <ul>
+            <li>
+                <button class="faq-button" onclick="toggleAnswer('answer1')">Что такое FPV-дроны?</button>
+                <div class="faq-answer" id="answer1">
+                    <p>FPV (First Person View) дрон — это дрон, оборудованный камерой и системой передачи видеосигнала, который позволяет пилоту видеть полет с первого лица, как будто он находится внутри дронов.</p>
+                </div>
+            </li>
+            <li>
+                <button class="faq-button" onclick="toggleAnswer('answer2')">Как выбрать лучший FPV-дрон для новичка?</button>
+                <div class="faq-answer" id="answer2">
+                    <p>Для новичков рекомендуется начинать с дронов с меньшими размерами и более простыми настройками. Ищите модели с хорошей стабилизацией, чтобы легче было контролировать полет.</p>
+                </div>
+            </li>
+        </ul>
+        <button class="faq-button" onclick="openTab('reviews')">Посмотреть отзывы пользователей</button>
+    </div>
+
+    <!-- Отзывы -->
+    <div id="reviews" class="tab-content">
+        <h2>Отзывы пользователей</h2>
+        <div>
+            <h3>Иван П.</h3>
+            <p>"Я только начинаю изучать мир FPV-дронов, и для меня лучший выбор был EMAX Tinyhawk. Летает стабильно и легко управляется!"</p>
+        </div>
+        <button class="faq-button" onclick="openTab('gallery')">Посмотреть галерею</button>
+    </div>
+
+    <!-- Галерея -->
+    <div id="gallery" class="tab-content">
+        <h2>Галерея изображений</h2>
+        <div class="gallery">
+            <img src="image1.jpg" alt="FPV дрон 1">
+            <img src="image2.jpg" alt="FPV дрон 2">
+            <img src="image3.jpg" alt="FPV дрон 3">
+            <img src="image4.jpg" alt="FPV дрон 4">
+        </div>
+    </div>
+
+    <!-- Форма обратной связи -->
+    <div id="contact" class="tab-content">
+        <h2>Контактная форма</h2>
+        <form class="contact-form" action="#">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Электронная почта:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Сообщение:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Отправить сообщение</button>
+        </form>
+    </div>
+
+    <!-- Опрос -->
+    <div id="poll" class="tab-content">
+        <h2>Опрос: Какой ваш любимый FPV-дрон?</h2>
+        <div class="poll">
+            <button onclick="submitPollAnswer('EMAX Tinyhawk')">EMAX Tinyhawk</button>
+            <button onclick="submitPollAnswer('DJI FPV')">DJI FPV</button>
+            <button onclick="submitPollAnswer('BetaFPV')">BetaFPV</button>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p>&copy; 2025 FPV-Гуру. Все права защищены.</p>
+    <p>Следите за нами в социальных сетях: <a href="#" style="color: white;">Facebook</a>, <a href="#" style="color: white;">Instagram</a>, <a href="#" style="color: white;">YouTube</a></p>
+</footer>
+
+<script>
+    function openTab(tabId) {
+        const tabs = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        const activeTab = document.getElementById(tabId);
+        activeTab.classList.add('active');
+    }
+
+    function toggleAnswer(answerId) {
+        const answer = document.getElementById(answerId);
+        answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function toggleTheme() {
+        const body = document.body;
+        body.classList.toggle('dark-theme');
+        body.classList.toggle('light-theme');
+    }
+
+    function submitPollAnswer(answer) {
+        alert(`Вы выбрали: ${answer}`);
+    }
+</script>
+
+</body>
+</html>
+
